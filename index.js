@@ -1,8 +1,20 @@
 const express = require('express');
 const app = express();
+const router = require("./Routes/route");
+const path = require('path');
+require('dotenv').config();
 
-app.get("/",(req,res)=>{ res.send("I am node js server");});
 
-app.get("/test",(req,res)=>{ res.send("I am testing another route");});
 
-app.listen(4000,()=>{console.log("I am listening 4000");});
+app.use("/api",router);
+
+app.use(express.static(path.join(__dirname,'/view/mern-stack/build')));
+
+app.get('*', (req, res) =>{
+  res.sendFile(path.join(__dirname, "Views/mern-stack/build/", 'index.html')); 
+});
+
+
+const PORT = process.env.port || 4000;
+
+app.listen(PORT,()=>{console.log(path.join('Server is running on '+PORT));});
