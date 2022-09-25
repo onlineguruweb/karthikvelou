@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use("/api",router);
 
-app.use(express.static(path.join(__dirname,'/view/mern-stack/build')));
+app.use(express.static(path.join(__dirname,'/Views/mern-stack/build')));
 
 app.get('*', (req, res) =>{
   res.sendFile(path.join(__dirname, "Views/mern-stack/build/", 'index.html')); 
